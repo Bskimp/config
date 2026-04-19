@@ -26,6 +26,20 @@
 #define BOARD_NAME        FURYF4OSD
 #define MANUFACTURER_ID   DIAT
 
+// Wing-main: mark this quad target wing-flashable. Firmware-lazy init
+// means motors declared here stay as motors until the user runs the
+// auto-remap flow from the configurator's Wing Hardware sub-tab, which
+// releases M3+M4 and reassigns their pads as SERVO 1+2 via runtime
+// `resource` commands. No SERVO pin pre-declaration here (would
+// collide with the motor pin declarations below).
+#ifndef USE_WING
+#define USE_WING
+#endif
+
+#ifndef USE_SERVOS
+#define USE_SERVOS
+#endif
+
 #define USE_ACC
 #define USE_ACC_SPI_ICM20689
 #define USE_ACC_SPI_MPU6500

@@ -26,6 +26,20 @@
 #define BOARD_NAME        FLYWOOF405S_AIO
 #define MANUFACTURER_ID   FLWO
 
+// Wing-main: mark this 8-motor AIO target wing-flashable. Firmware-
+// lazy init keeps the motor declarations in this file intact at boot;
+// users convert via the configurator's Wing Hardware sub-tab, which
+// releases M3..M8 and reassigns those pads as SERVO 1..6 (ample
+// servo budget for elevon + flaps + twin-tail wing designs). No
+// SERVO pin pre-declaration here (would collide with motor pins).
+#ifndef USE_WING
+#define USE_WING
+#endif
+
+#ifndef USE_SERVOS
+#define USE_SERVOS
+#endif
+
 #define USE_ACC
 #define USE_ACC_SPI_MPU6000
 #define USE_ACC_SPI_ICM42688P
