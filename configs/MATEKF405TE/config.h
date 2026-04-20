@@ -26,6 +26,14 @@
 #define BOARD_NAME        MATEKF405TE
 #define MANUFACTURER_ID   MTKS
 
+#ifndef USE_WING
+#define USE_WING
+#endif
+
+#ifndef USE_SERVOS
+#define USE_SERVOS
+#endif
+
 #define USE_GYRO
 #define USE_GYRO_SPI_ICM42688P
 #define USE_ACC

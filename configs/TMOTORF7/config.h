@@ -26,6 +26,14 @@
 #define BOARD_NAME        TMOTORF7
 #define MANUFACTURER_ID   TMTR
 
+#ifndef USE_WING
+#define USE_WING
+#endif
+
+#ifndef USE_SERVOS
+#define USE_SERVOS
+#endif
+
 #define USE_GYRO
 #define USE_GYRO_SPI_MPU6000
 #define USE_ACC
