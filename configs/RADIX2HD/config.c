@@ -35,7 +35,13 @@
 #include <stdint.h>
 #include "platform.h"
 
-#ifdef USE_BRAINFPV_BL
+/* The BL header struct is only needed when the firmware itself must carry the
+ * bootloader-validation magic (RADIX 2 HD: packer needs_header=false, struct
+ * lives in the firmware image). RADIX 2 has needs_header=true — the packer
+ * supplies its own envelope and the firmware doesn't need this struct. So we
+ * gate on the magic constant being defined rather than on USE_BRAINFPV_BL,
+ * which is also set by RADIX 2 (for the persistent.c BKP_DR6 carve-out). */
+#ifdef BRAINFPV_BL_HEADER_MAGIC
 
 typedef struct __attribute__((packed)) {
     uint32_t target_magic;
@@ -55,4 +61,4 @@ const BrainFPVBlHeader_t __attribute__((section(".bl_header_section"))) __attrib
     .isr_vector_base = (uint32_t)(uintptr_t)isr_vector_table_base,
 };
 
-#endif /* USE_BRAINFPV_BL */
+#endif /* BRAINFPV_BL_HEADER_MAGIC */
